@@ -15,14 +15,17 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Loader from "@/components/ui/loader";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { useMutation } from "@tanstack/react-query";
-import { LogIn, LogOut } from "lucide-react"; // LogIn is still imported but LogOut will be used in confirmation
+import { LogIn, LogOut, User, User2 } from "lucide-react"; // LogIn is still imported but LogOut will be used in confirmation
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 export type LoggedInButtonProps = {
   user: Session["user"];
@@ -50,6 +53,13 @@ export default function LoggedInButton(props: LoggedInButtonProps) {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
+        <DropdownMenuItem asChild>
+          <Link href="/account">
+            <User className="mr-2" size={12} />
+            Account
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
